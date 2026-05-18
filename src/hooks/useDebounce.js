@@ -11,8 +11,7 @@ function useDebounce(initialValue, delay, debouncedFn) {
     // useRef conserva l'ID del timeout senza causare re-render quando cambia.
     const timeoutIdRef = useRef(null);
 
-    // useCallback evita di ricreare la funzione ad ogni render (ricreata solo se delay o debouncedFn cambiano).
-    const setDebouncedValue = useCallback((value) => {
+    const setDebouncedValue = (value) => {
         setDebouncedValueInner(value);
 
         // Ogni chiamata annulla il timeout precedente e ne avvia uno nuovo:
@@ -22,7 +21,7 @@ function useDebounce(initialValue, delay, debouncedFn) {
             debouncedFn(value);
         }, delay);
 
-    }, [delay, debouncedFn]);
+    };
 
     // Cleanup: cancella il timeout se il componente viene smontato.
     useEffect(() => {
