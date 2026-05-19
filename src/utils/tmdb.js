@@ -43,8 +43,16 @@ const searchTvShows = (query) => {
     return fetchFromTMDB(`/search/tv?${params}`);
 };
 
+const getGenres = (type) => {
+    const param = new URLSearchParams({
+        language: 'it',
+    });
+    return fetchFromTMDB(`/genre/${type}/list?${param}`);
+};
+
 export {
     searchMovies,
     searchTvShows,
+    getGenres,
     getImageUrl,
 };
