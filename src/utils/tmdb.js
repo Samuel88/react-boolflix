@@ -34,6 +34,17 @@ const searchMovies = (query) => {
     return fetchFromTMDB(`/search/movie?${params}`);
 };
 
+const searchTvShows = (query) => {
+    const params = new URLSearchParams({
+        ...baseQueryParams,
+        query,
+    });
+
+    return fetchFromTMDB(`/search/tv?${params}`);
+};
+
 export {
-    searchMovies
+    searchMovies,
+    searchTvShows,
+    getImageUrl,
 };
