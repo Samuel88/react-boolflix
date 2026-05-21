@@ -10,7 +10,7 @@ const getImageUrl = (path, size = 'original') => {
     if (path) {
         return `https://image.tmdb.org/t/p/${size}${path}`;
     } else {
-        return 'https://placehold.co/600x400?text=Non+Disponibile';
+        return 'https://placehold.co/400x600?text=Non+Disponibile';
     }
 };
 
@@ -178,6 +178,16 @@ const searchTvShows = (query) => {
         });
 };
 
+const getTrendingMovies = () => {
+    const params = new URLSearchParams(baseQueryParams);
+
+    return fetchFromTMDB(`/trending/movie/day?${params}`)
+        .then(data => {
+            const movieResults = data.results;
+            return movieResults.map(extractMovieData);
+        });
+}
+
 const getGenres = (type) => {
     const param = new URLSearchParams({
         language: 'it',
@@ -190,4 +200,5 @@ export {
     searchTvShows,
     getGenres,
     getImageUrl,
+    getTrendingMovies,
 };

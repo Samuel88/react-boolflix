@@ -3,7 +3,7 @@ import { useState, useEffect, createContext } from "react";
 const ThemeContext = createContext(null);
 
 function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState('light'); // 'light' | 'dark'
+    const [theme, setTheme] = useState('dark'); // 'light' | 'dark'
 
     // Modificare document.documentElement è un effetto collaterale: agisce sul DOM
     // reale al di fuori del controllo di React. Il rendering deve essere puro

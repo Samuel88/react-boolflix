@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { searchMovies, searchTvShows } from "../utils/tmdb";
+import { searchMovies, searchTvShows, getTrendingMovies } from "../utils/tmdb";
 import Rating from "../components/Rating";
 import Flag from "react-world-flags";
+import { useEffect } from "react";
 
 function HomePage() {  
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    getTrendingMovies()
+      .then(movies => {
+        setSearchResults(movies);
+      });
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
