@@ -46,10 +46,10 @@ const normalizeDescription = (description) => {
 }
 
 const fetchFromTMDB = (endpoint) => {
-    const url = `${TMDB_BASE_URL}${endpoint}`;
+    const url = new URL(`${TMDB_BASE_URL}${endpoint}`);
+    url.searchParams.set('api_key', TMDB_API_KEY);
     return fetch(url, {
         headers: {
-            Authorization: `Bearer ${TMDB_API_KEY}`,
             'Content-Type': 'application/json;charset=utf-8',
         },
     }).then(response => {
